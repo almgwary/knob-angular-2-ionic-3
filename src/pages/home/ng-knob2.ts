@@ -154,21 +154,27 @@ export class Knob implements OnInit {
    *   Draw the arc
    */
   drawArc(svg, arc, label, style, click?, drag?) {
+
+
+    console.log('almg drawArc',{svg, arc, label, style, click, drag});
     var elem = svg.append('path')
       .attr('id', label)
       .attr('d', arc)
-      .style(style)
-      .attr('transform', 'translate(' + (this.options.size / 2) + ', ' + (this.options.size / 2) + ')');
 
+      .attr('transform', 'translate(' + (this.options.size / 2) + ', ' + (this.options.size / 2) + ')')
+      .style(style);
+
+
+    console.log('almg drawArc elem',{elem});
     if (this.options.readOnly === false) {
       if (click) {
-        elem.on('click', click);
+        svg.on('click', click);
       }
       if (drag) {
-        elem.call(drag);
+        svg.call(drag);
       }
     }
-    return elem;
+    return svg;
   }
   /**
    *   Create the arcs
@@ -229,10 +235,15 @@ export class Knob implements OnInit {
    *   Draw the arcs
    */
   drawArcs(clickInteraction, dragBehavior) {
-    var svg = d3.select(this.element)
+    let svg = d3.select(this.element)
       .append('svg')
       .attr("width", this.options.size)
       .attr("height", this.options.size);
+
+    // svg = svg._groups[0];
+
+    console.log('almg',{"svg":svg});
+
 
     if (this.options.bgColor) {
       this.drawArc(svg, this.bgArc, 'bgArc', { "fill": this.options.bgColor });
@@ -363,6 +374,8 @@ export class Knob implements OnInit {
       this.changeElem = this.drawArc(svg, this.changeArc, 'changeArc', { "fill-opacity": 0 });
     }
     this.valueElem = this.drawArc(svg, this.valueArc, 'valueArc', { "fill": this.options.barColor });
+    console.log('almg',{"valueElem":this.valueElem});
+
     var cursor = "pointer";
     if (this.options.readOnly) {
       cursor = "default";
@@ -382,12 +395,17 @@ export class Knob implements OnInit {
 
     var dragBehavior = d3.drag()
       .on('drag', dragInteraction)
-      .on('dragend', clickInteraction);
+      .on('end', clickInteraction);
 
     that.drawArcs(clickInteraction, dragBehavior);
 
     if (that.options.animate.enabled) {
-      that.valueElem.transition().ease(that.options.animate.ease).duration(that.options.animate.duration).tween('', function () {
+      console.log('almg that.valueElem',that.valueElem);
+      that.valueElem.transition()
+        .ease(d3.easeLinear)
+
+        .duration(that.options.animate.duration)
+        .tween('', function () {
         var i = d3.interpolate(that.valueToRadians(that.options.startAngle, 360), that.valueToRadians(that.value, that.options.max, that.options.endAngle, that.options.startAngle, that.options.min));
         return function (t) {
           var val = i(t);
