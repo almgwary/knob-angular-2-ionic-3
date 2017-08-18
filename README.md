@@ -1,26 +1,39 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Knop in angular2 ionic3
 
-## How to use this template
+## 1st- solution [ng-knob2](https://github.com/RadMie/ng-knob/issues/9#issuecomment-245337327)
+      
+  * lates update of *ng-knob2* not support angular 4 and ionic3 also not support D3 version 4, the functions they are using in the D3 not exist any more .
+  * to make it run correctly with Angular4 and D3 version 4 check these commits [1st ng-knob2 fix](https://github.com/almgwary/knob-angular-2-ionic-3/commit/5e94659f3c45d1eb7459982cb1340bd680015cd0) -  [2nd fix run the component](https://github.com/almgwary/knob-angular-2-ionic-3/commit/aec2bda98662fa08b8eca6409f451a4beca7e778)
+  * after fix it show small compoent in the page but still it have issues .
+  * [example screen shot from home page](https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s2.PNG)
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
 
-### With the Ionic CLI:
+## 2dn- solution [jQuery-Knob](https://github.com/aterrien/jQuery-Knob)
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+  * it works check  [ this screen shot from list page ](https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s2.PNG) ;
+  * we can use jquery with anuglar2 but we have to handel data binidg manullay 
+  * any change in the JQ will affect the angular modle by this function 
+           
+                    $(element).knob({
+                      'change' :  ()=> {
+                        // this is JQ call back to update angular model
+                        this.value = element.value
+                      }
+                    });
+                    
+  * any change in angular value should trigger change on JQ element 
+  
+  
+                    
+                    var newValue = this.value ;
+                    $(element)
+                      .val(newValue)
+                      .trigger('change');
+             
+             
+             
+# Screen shots
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
-```
-
-Then, to run it, cd into `mySideMenu` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+<img src="https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s2.PNG" width=30%>
+<img src="https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s1.PNG" width=30%>
