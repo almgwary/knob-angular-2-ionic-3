@@ -278,7 +278,7 @@ export class Knob implements OnInit {
           .attr('class', 'sub-text')
           .attr("text-anchor", "middle")
           .attr("font-size", fontSize)
-          .style("fill", this.options.subText.color)
+          .attr("fill", this.options.subText.color)
           .text(this.options.subText.text)
           .attr('transform', 'translate(' + ((this.options.size / 2)) + ', ' + ((this.options.size / 2) + (this.options.size * 0.15)) + ')');
       }
@@ -322,7 +322,7 @@ export class Knob implements OnInit {
             "cy",function (d: { cy }) {
           return d.cy;
         })
-          .style("fill", this.options.scale.color)
+          .attr("fill", this.options.scale.color)
           ;
 
       } else if (this.options.scale.type === 'lines') {
