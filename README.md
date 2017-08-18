@@ -5,7 +5,7 @@
   * lates update of *ng-knob2* not support angular 4 and ionic3 also not support D3 version 4, the functions they are using in the D3 not exist any more .
   * to make it run correctly with Angular4 and D3 version 4 check these commits [1st ng-knob2 fix](https://github.com/almgwary/knob-angular-2-ionic-3/commit/5e94659f3c45d1eb7459982cb1340bd680015cd0) -  [2nd fix run the component](https://github.com/almgwary/knob-angular-2-ionic-3/commit/aec2bda98662fa08b8eca6409f451a4beca7e778)
   * after fix it show small compoent in the page but still it have issues .
-  * [example screen shot from home page](https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s2.PNG)
+  * [example screen shot from home page](https://raw.githubusercontent.com/almgwary/knob-angular-2-ionic-3/master/s1.PNG)
 
 
 
